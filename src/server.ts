@@ -95,7 +95,8 @@ export class Server {
             var httpServer = http.createServer(this.express);
         }
 
-        httpServer.listen(this.options.port, this.options.host);
+        var ipaddress = process.env.OPENSHIFT_NODEJS_IP || "127.0.0.1";
+        httpServer.listen(this.options.port, ipaddress);
 
         this.authorizeRequests();
 
